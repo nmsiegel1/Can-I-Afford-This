@@ -8,23 +8,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>What's For Dinner?</title>
+    <script src="https://kit.fontawesome.com/df70a58ecd.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header>
         <nav>
-            <a href="./favorites.html" class="favorites">Favorites</a>
+            <a href="./favorites.html" class="favorites">
+                <span class="icon">
+                    <i class="fa-solid fa-bowl-food"></i>
+                </span>
+                <span class="is-size-4 ">
+                    Favorites
+                </span>
+            </a>
         </nav>
     </header>
     <div class="title">
-        <h1 class="">What's For Dinner?</h1>
-        <h2 class="">Search for a Recipe:</h2>
-                    <form class="" id="search-form">
-                        <input name="search" id="search-name" type="text" autofocus="true" class="form-input" placeholder="Find a recipe"></inpput>
-                        <button type="submit" class="btn" id="search-btn">Search</button>
-                    </form>
+        <h1 class="has-text-centered">
+            What's For Dinner?
+        </h1>
+    <div class="search-bar">
+        <h2 class="has-text-centered">
+            Search for a Recipe:
+        </h2>
+        <form class="nosubmit" id="search-form" type="search">
+            <input name="search" id="search-name" type="text" autofocus="true" class="form-input" placeholder="Find a recipe..."></inpput>
+            <button type="submit" class="button" id="search-btn">Search</button>
+        </form>
     </div>
-    <div class="container columns">
+    </div>
+    <div class="columns is-vcentered">
         <div class="column">
             <div class="card" id="recipe-card">
                 <div class="card-image recipe-image" id="recipe-image">
