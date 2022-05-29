@@ -80,4 +80,3 @@ function recipeHTML (results) {
     containerEl.innerHTML = cards;
     })
 }
-
