@@ -8,6 +8,7 @@ var nutritionApiKey = "8237150803039e132ee19b2cc6302444";
 var inputEl = document.getElementById("search-name");
 var searchButtonEl = document.getElementById("search-btn");
 var containerEl = document.querySelector(".columns");
+var savedRecipesArray = [];
 
 searchButtonEl.addEventListener("click", function (event) {
   event.preventDefault();
@@ -37,10 +38,11 @@ function recipeHTML (results) {
     console.log(results)
     var cards = "";
     results.map(response => {
-        var recipeId = response.recipe.uri;
-        console.log("recipeId", recipeId);
-        splitId = recipeId.split("_")[1];
-    console.log("split id", splitId);
+
+    var recipeId = response.recipe.uri;
+    console.log("recipeId", recipeId);
+    splitId = recipeId.split("_")[1];
+
         
     cards +=  `
     <div class="card" id="recipe-card">
@@ -71,13 +73,6 @@ function recipeHTML (results) {
 
 function saveRecipe(splitId) {
     console.log("save function Id", splitId);
-    
+    savedRecipesArray.push(splitId);
+    localStorage.setItem("savedRecipeArray", JSON.stringify(savedRecipesArray));
 }
-document.addEventListener("click", (event) => {
-    if (event.target.id == "save-recipe") {
-        // var addHeart = document.querySelector(".media-left");
-        // addHeart.classList.remove("hide");
-        // var uri = event.target.parentNode.parentNode.response.uri;
-        // console.log("uri console", response.uri)
-    }
-})
