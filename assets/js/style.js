@@ -4,7 +4,7 @@ var recipeApiKey = "61be0ff18cfbf722d2b2b7a832127896";
 
 var inputEl = document.getElementById("search-name");
 var searchButtonEl = document.getElementById("search-btn");
-var containerEl = document.querySelector(".container");
+var containerEl = document.querySelector(".columns");
 
 searchButtonEl.addEventListener("click", function (event) {
   event.preventDefault();
