@@ -7,7 +7,7 @@ var nutritionApiKey = "8237150803039e132ee19b2cc6302444";
 
 var inputEl = document.getElementById("search-name");
 var searchButtonEl = document.getElementById("search-btn");
-var containerEl = document.querySelector(".container");
+var containerEl = document.querySelector(".columns");
 
 searchButtonEl.addEventListener("click", function (event) {
   event.preventDefault();
