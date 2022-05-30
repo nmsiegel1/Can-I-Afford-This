@@ -55,7 +55,7 @@ form.nosubmit {
     padding: 0;
   }
 
-button[type="submit"] {
+.search-btn {
     text-indent: -999px;
     overflow: hidden;
     width: 40px;
@@ -68,9 +68,17 @@ button[type="submit"] {
     opacity: 0.7;
   }
 
-button[type="submit"]:hover {
+.search-btn:hover {
     opacity: 1;
   }
+
+  .random-btn {
+      /* add css */
+  }
+
+.random-btn:hover {
+    /* add css */
+}
 
 input.nosubmit {
     width: 260px;
