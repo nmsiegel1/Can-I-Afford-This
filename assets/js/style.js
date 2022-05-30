@@ -62,11 +62,14 @@ function recipeHTML (results) {
             </figure>
         </div>
         <div class="card-content" id="recipe-content">
+        <div class="media-left hide">
+            <i class="fa-solid fa-heart"></i>
+        </div>
             <div class="media-content">
                     <p class="title is-4 recipe-title" id="recipe-title">${response.recipe.label}</p>
             </div>
             <div class="recipe-description" id="recipe-description">
-                    
+
             </div>
             <div class="nutrition-info" id="nutrition-info">
                 nutrition info
@@ -80,3 +83,12 @@ function recipeHTML (results) {
     containerEl.innerHTML = cards;
     })
 }
+
+document.addEventListener("click", (event) => {
+    console.log("click!");
+    if (event.target.id == "save-recipe") {
+        console.log("save btn");
+        var addHeart = document.querySelector(".media-left");
+        addHeart.classList.remove("hide");
+    }
+})
