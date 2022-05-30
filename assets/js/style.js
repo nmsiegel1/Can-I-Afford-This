@@ -32,28 +32,16 @@ async function searchRecipes(currentKeyword) {
   console.log (data);
 }
 
-// function searchNutrition(currentKeyword) {
-//   var recipeUrl =
-//     "https://api.edamam.com/api/nutrition-details?app_id=" +
-//     nutritionAppID +
-//     "&app_key=" +
-//     nutritionApiKey +
-//     "&q=" +
-//     recipeName;
-
-//   fetch(recipeUrl).then(function (response) {
-//     if (response.ok) {
-//       response.json().then(function (nutritionData) {
-//         //   showRecipes(recipeData);
-//       });
-//     }
-//   });
-// }
 
 function recipeHTML (results) {
     console.log(results)
     var cards = "";
     results.map(response => {
+        var recipeId = response.recipe.uri;
+        console.log("recipeId", recipeId);
+        splitId = recipeId.split("_")[1];
+    console.log("split id", splitId);
+        
     cards +=  `
     <div class="card" id="recipe-card">
         <div class="card-image recipe-image" id="recipe-image">
@@ -62,9 +50,6 @@ function recipeHTML (results) {
             </figure>
         </div>
         <div class="card-content" id="recipe-content">
-        <div class="media-left hide">
-            <i class="fa-solid fa-heart"></i>
-        </div>
             <div class="media-content">
                     <p class="title is-4 recipe-title" id="recipe-title">${response.recipe.label}</p>
             </div>
@@ -77,18 +62,22 @@ function recipeHTML (results) {
             </div>
             <footer class="card-footer">
                 <a href=" ${response.recipe.url} " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
-                <a href="#" class="card-footer-item save-recipe" id="save-recipe">Save</a>
+                <a href="javascript:null" onClick="javascript:saveRecipe(splitId)" class="card-footer-item save-recipe" id="save-recipe">Save</a>
             </footer>
         </div>`;
     containerEl.innerHTML = cards;
     })
 }
 
+function saveRecipe(splitId) {
+    console.log("save function Id", splitId);
+    
+}
 document.addEventListener("click", (event) => {
-    console.log("click!");
     if (event.target.id == "save-recipe") {
-        console.log("save btn");
-        var addHeart = document.querySelector(".media-left");
-        addHeart.classList.remove("hide");
+        // var addHeart = document.querySelector(".media-left");
+        // addHeart.classList.remove("hide");
+        // var uri = event.target.parentNode.parentNode.response.uri;
+        // console.log("uri console", response.uri)
     }
 })
