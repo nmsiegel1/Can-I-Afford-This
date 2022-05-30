@@ -56,5 +56,10 @@ function recipeHTML(results) {
             </footer>
         </div>`;
     containerEl.innerHTML = cards;
+<<<<<<< HEAD
   });
 }
+=======
+    })
+}
+>>>>>>> 29560a868a27aaee2bab91c2bb667275f440397b
