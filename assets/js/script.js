@@ -39,13 +39,12 @@ function recipeHTML (results) {
     var cards = "";
     results.map(response => {
 
-    var recipeId = response.recipe.uri;
-    console.log("recipeId", recipeId);
-    splitId = recipeId.split("_")[1];
+    var recipeId = response.recipe.uri.split("_")[1];
+    console.log ("new id", recipeId);
 
-        
+
     cards +=  `
-    <div class="card" id="recipe-card">
+    <div class="card" id="${response.recipe.uri.split("_")[1]}">
         <div class="card-image recipe-image" id="recipe-image">
             <figure class="image is-4by3">
                 <img src="${response.recipe.image}" alt = "photo of recipe">
@@ -64,15 +63,37 @@ function recipeHTML (results) {
             </div>
             <footer class="card-footer">
                 <a href=" ${response.recipe.url} " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
-                <a href="javascript:null" onClick="javascript:saveRecipe(splitId)" class="card-footer-item save-recipe" id="save-recipe">Save</a>
+                <a href="#" class="card-footer-item save-btn" id="save-btn">Save</a>
             </footer>
         </div>`;
     containerEl.innerHTML = cards;
     })
 }
 
-function saveRecipe(splitId) {
-    console.log("save function Id", splitId);
-    savedRecipesArray.push(splitId);
-    localStorage.setItem("savedRecipeArray", JSON.stringify(savedRecipesArray));
+// <a href="#" onClick="javascript:saveRecipe(recipeId)" class="card-footer-item save-btn" id="save-btn">Save</a>
+
+function saveRecipe(recipeId) {
+    console.log("save function Id", recipeId);
+    console.log("this.id", this.id);
+    // savedRecipesArray.push(splitId);
+    // localStorage.setItem("savedRecipeArray", JSON.stringify(savedRecipesArray));
 }
+
+$("body").on("click", "#save-btn", saveRecipe);
+    
+    // var key = JSON.stringify($(this).parent().siblings(".card").children());
+    // var recipeId = $(this).attr("id");
+    // localStorage.setItem(key, recipeId);;
+
+
+// document.addEventListener("click", event => {
+//     console.log("im clicked")
+//     if (event.target.id == "save-btn") {
+//         console.log("save click")
+//         var key = $(this).parent().siblings(".card").children();
+//         console.log("key", key)
+//         var recipeId = $(this).attr("id");
+//         console.log("id", recipeId)
+
+//     }
+// })

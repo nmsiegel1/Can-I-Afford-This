@@ -11,22 +11,25 @@ var containerEl = document.querySelector(".columns");
 var savedRecipesArray = [];
 
 function loadRecipes() {
-    var savedRecipes = JSON.parse(localStorage.getItem("savedRecipesArray")) || [];
-    for (var i=0; i < savedRecipesArray.lenght; i++) {
-        searchRecipes(savedRecipes[i]);
-        console.log("pull from storage", savedRecipes[i])
+    var testRecipeId = "84d3dcca84d9d26535474ea24b15e9c3";
+    // var savedRecipes = JSON.parse(localStorage.getItem("savedRecipesArray")) || [];
+    // for (var i=0; i < savedRecipesArray.lenght; i++) {
+        searchRecipes(testRecipeId);
+        // console.log("pull from storage", savedRecipes[i])
     }
-}
+// }
 
-async function searchRecipes() {
+
+async function searchRecipes(testRecipeId) {
     var recipeUrl =
       "https://api.edamam.com/search?app_id=" +
       recipeAppID +
       "&app_key=" +
       recipeApiKey +
       "&q=" +
-      currentKeyword +
-      "&to=4";
+      testRecipeId;
+    //   currentKeyword +
+    //   "&to=4";
     console.log(recipeUrl);
   
     var response = await fetch (recipeUrl);
@@ -35,7 +38,7 @@ async function searchRecipes() {
     console.log (data);
   }
 function recipeHTML (results) {
-    console.log(savedRecipes)
+    // console.log(savedRecipes)
     var cards = "";
     results.map(response => {
 
