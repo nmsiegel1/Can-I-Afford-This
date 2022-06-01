@@ -10,33 +10,41 @@ var searchButtonEl = document.getElementById("search-btn");
 var containerEl = document.querySelector(".columns");
 var savedRecipesArray = [];
 
-function loadRecipes() {
-    var favoriteRecipes = JSON.parse(localStorage.getItem("savedRecipes"))|| [];
-    console.log("favorite recipe", favoriteRecipes)
-    var testRecipeId = "84d3dcca84d9d26535474ea24b15e9c3";
-    // var savedRecipes = JSON.parse(localStorage.getItem("savedRecipesArray")) || [];
-    // for (var i=0; i < favoriteRecipes.lenght; i++) {
-        searchRecipes(favoriteRecipes);
-        // console.log("pull from storage", savedRecipes[i])
-    // }
-}
+// $()
+
+// function loadRecipes() {
+//     var favoriteRecipes = JSON.parse(localStorage.getItem("savedRecipes"))|| [];
+//     console.log("favorite recipe", favoriteRecipes);
+//     var testRecipeId = "84d3dcca84d9d26535474ea24b15e9c3";
+//     // var savedRecipes = JSON.parse(localStorage.getItem("savedRecipesArray")) || [];
+   
+//         searchRecipes(favoriteRecipes);
+//         // console.log("pull from storage", savedRecipes[i])
+//         }
+//     }
 
 
-async function searchRecipes(favoriteRecipes) {
+    async function searchRecipes(favoriteRecipes) {
+        var favoriteRecipes = JSON.parse(localStorage.getItem("savedRecipes"))|| [];
+        console.log("favorite recipe", favoriteRecipes);
+        for (var i=0; i < favoriteRecipes.lenght; i++) {
+
+    // var favoriteRecipes = JSON.parse(localStorage.getItem("savedRecipes"))|| [];
+
     var recipeUrl =
       "https://api.edamam.com/search?app_id=" +
       recipeAppID +
       "&app_key=" +
       recipeApiKey +
       "&q=" +
-      favoriteRecipes;
+      favoriteRecipes[i];
     //   currentKeyword +
     //   "&to=4";
     console.log(recipeUrl);
-
     var response = await fetch (recipeUrl);
     var data = await response.json();
     recipeHTML(data.hits)
+}
     console.log (data);
   }
 function recipeHTML (results) {
@@ -70,4 +78,4 @@ function recipeHTML (results) {
     })
 }
 
-loadRecipes();
+searchRecipes();

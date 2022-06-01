@@ -40,6 +40,7 @@ function recipeHTML(results) {
 
     cards += `
     <div class="card" id="recipe-card">
+
         <div class="card-image recipe-image" id="recipe-image">
             <figure class="image is-4by3">
                 <img src="${response.recipe.image}" alt = "photo of recipe">
@@ -60,7 +61,7 @@ function recipeHTML(results) {
             <footer class="card-footer">
                 <a href=" ${
                   response.recipe.url
-                } " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
+                } " class="card-footer-item view-recipe" target= "_blank">View Recipe</a>
                 <a href="#" class="card-footer-item save-btn" id="${response.recipe.uri.split("_")[1]}">Save</a>
             </footer>
         </div>`;
@@ -108,16 +109,21 @@ function randomHTML(results) {
     });
 }
 
-$("body").on("click", ".save-btn", saveRecipe);
+$("body").on("click", ".save-btn", function(){
+var recipeEl = $(this).attr("id");
+savedRecipesArray.push(recipeEl);
+localStorage.setItem("savedRecipes", JSON.stringify(savedRecipesArray));
+});
+
 
 
 function saveRecipe() {
-    console.log("this.id", this.id);
     var recipeId = this.id;
+    console.log("recipe id", recipeId);
     // if (savedRecipesArray.indexOf(recipeId) != -1){
-    savedRecipesArray.push(recipeId)
+        var recipePull = 
     console.log("pushed array", savedRecipesArray)
-    localStorage.setItem("savedRecipes", JSON.stringify(savedRecipesArray));
+    localStorage.setItem("savedRecipes", JSON.stringify(recipePul));
 }
 // }
 // var key = JSON.stringify($(this).parent().siblings(".card").children());
