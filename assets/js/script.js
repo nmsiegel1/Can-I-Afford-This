@@ -6,6 +6,7 @@ var inputEl = document.getElementById("search-name");
 var searchButtonEl = document.getElementById("search-btn");
 var randomButtonEl = document.getElementById("random-btn");
 var containerEl = document.querySelector(".columns");
+var savedRecipesArray = [];
 
 
 searchButtonEl.addEventListener("click", function (event) {
@@ -31,12 +32,18 @@ async function searchRecipes(currentKeyword) {
   console.log(data);
 }
 
-function recipeHTML(results) {
-  console.log(results);
-  var cards = "";
-  results.map((response) => {
-    cards += `
-    <div class="card" id="recipe-card">
+
+function recipeHTML (results) {
+    console.log(results)
+    var cards = "";
+    results.map(response => {
+
+    var recipeId = response.recipe.uri.split("_")[1];
+    console.log ("new id", recipeId);
+
+
+    cards +=  `
+    <div class="card" id="${response.recipe.uri.split("_")[1]}">
         <div class="card-image recipe-image" id="recipe-image">
             <figure class="image is-4by3">
                 <img src="${response.recipe.image}" alt = "photo of recipe">
@@ -44,11 +51,10 @@ function recipeHTML(results) {
         </div>
         <div class="card-content" id="recipe-content">
             <div class="media-content">
-                    <p class="title is-4 recipe-title" id="recipe-title">
-                    ${response.recipe.label}
-                    </p>
-                    <h3 class = "source">
-                    Source: ${response.recipe.source}
+                    <p class="title is-4 recipe-title" id="recipe-title">${response.recipe.label}</p>
+            </div>
+            <div class="recipe-description" id="recipe-description">
+
             </div>
             <div class="nutrition-info" id="nutrition-info">
                 Servings: ${response.recipe.yield} <br>
@@ -56,14 +62,23 @@ function recipeHTML(results) {
             </div>
             <footer class="card-footer">
                 <a href=" ${response.recipe.url} " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
-                <a href="#" class="card-footer-item save-recipe" id="save-recipe">Save</a>
+                <a href="#" class="card-footer-item save-btn" id="save-btn">Save</a>
             </footer>
         </div>`;
     containerEl.innerHTML = cards;
-  });
+    })
 }
 
+// <a href="#" onClick="javascript:saveRecipe(recipeId)" class="card-footer-item save-btn" id="save-btn">Save</a>
+
+// function saveRecipe(recipeId) {
+//     console.log("save function Id", recipeId);
+//     console.log("this.id", this.id);
+    // savedRecipesArray.push(splitId);
+    // localStorage.setItem("savedRecipeArray", JSON.stringify(savedRecipesArray));
+// }
 randomButtonEl.addEventListener("click", getRandomRecipe)
+
 
 async function getRandomRecipe() {
   var randomUrl = "https://themealdb.com/api/json/v1/1/random.php"
@@ -98,3 +113,21 @@ function randomHTML(results) {
     containerEl.innerHTML = cards;
   });
 }
+// $("body").on("click", "#save-btn", saveRecipe);
+    
+    // var key = JSON.stringify($(this).parent().siblings(".card").children());
+    // var recipeId = $(this).attr("id");
+    // localStorage.setItem(key, recipeId);;
+
+
+// document.addEventListener("click", event => {
+//     console.log("im clicked")
+//     if (event.target.id == "save-btn") {
+//         console.log("save click")
+//         var key = $(this).parent().siblings(".card").children();
+//         console.log("key", key)
+//         var recipeId = $(this).attr("id");
+//         console.log("id", recipeId)
+
+//     }
+// })
