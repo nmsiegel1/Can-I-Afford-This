@@ -1,12 +1,10 @@
 //for recipe api
 var recipeAppID = "650e07f6";
 var recipeApiKey = "61be0ff18cfbf722d2b2b7a832127896";
-// for nutrition api
-var nutritionAppID = "9c414ff1";
-var nutritionApiKey = "8237150803039e132ee19b2cc6302444";
 
 var inputEl = document.getElementById("search-name");
 var searchButtonEl = document.getElementById("search-btn");
+var randomButtonEl = document.getElementById("random-btn");
 var containerEl = document.querySelector(".columns");
 var savedRecipesArray = [];
 
@@ -27,10 +25,10 @@ async function searchRecipes(currentKeyword) {
     "&to=4";
   console.log(recipeUrl);
 
-  var response = await fetch (recipeUrl);
+  var response = await fetch(recipeUrl);
   var data = await response.json();
-  recipeHTML(data.hits)
-  console.log (data);
+  recipeHTML(data.hits);
+  console.log(data);
 }
 
 
@@ -58,8 +56,8 @@ function recipeHTML (results) {
 
             </div>
             <div class="nutrition-info" id="nutrition-info">
-                nutrition info
-            </div>
+                Servings: ${response.recipe.yield} <br>
+                Calories: ${response.recipe.calories.toFixed(0)}
             </div>
             <footer class="card-footer">
                 <a href=" ${response.recipe.url} " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
