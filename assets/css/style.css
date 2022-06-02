@@ -14,6 +14,7 @@
 .blank-space {
   background-color: rgb(26, 26, 27);
 }
+<<<<<<< HEAD
 
 html {
   height: 100%;
@@ -53,6 +54,47 @@ h1::-moz-selection {
   color: var(--neon-text-color);
 }
 
+=======
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: "Sora", sans-serif;
+  background-color: rgb(26, 26, 27);
+  padding-left: 50px;
+  padding-right: 50px;
+  min-height: 100%;
+}
+
+.card {
+  margin-bottom: 10px;
+}
+
+nav {
+  padding-bottom: 100px;
+}
+
+h1 {
+  color: white;
+  font-size: 48px;
+  font-weight: 200;
+
+  color: #fff;
+  padding: 2rem 4rem 3rem;
+  border: 0.4rem solid #fff;
+  border-radius: 2rem;
+  text-transform: uppercase;
+  animation: flicker 1.5s infinite alternate;
+}
+
+h1::-moz-selection {
+  background-color: var(--neon-border-color);
+  color: var(--neon-text-color);
+}
+
+>>>>>>> main
 h1::selection {
   background-color: var(--neon-border-color);
   color: var(--neon-text-color);
@@ -178,6 +220,7 @@ input.nosubmit {
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E")
     no-repeat 13px center;
 }
+<<<<<<< HEAD
 
 .hide {
     display: none;
@@ -188,3 +231,5 @@ input.nosubmit {
     color: var(--neon-text-color);
     text-transform: uppercase;
 }
+=======
+>>>>>>> main
