@@ -112,7 +112,18 @@ function randomHTML(results) {
 // this is the click element for the save button that saves a recipe to local storage
 $("body").on("click", ".save-btn", function () {
   var recipeEl = $(this).attr("id");
-  // if (savedRecipesArray.indexOf(recipeEl) != -1){
+  if (!savedRecipesArray.includes(recipeEl)){
   savedRecipesArray.push(recipeEl);
   localStorage.setItem("savedRecipes", JSON.stringify(savedRecipesArray));
+  }
+  showMessage();
 });
+
+function showMessage(){
+    var messageEl = document.querySelector("#save-message");
+    messageEl.style.visibility = "visible";
+    setTimeout(() => {
+        messageEl.style.visibility = "hidden";
+    }, 1000);
+}
+

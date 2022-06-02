@@ -46,7 +46,7 @@ function recipeHTML(results) {
   var cards = "";
   results.map((response) => {
     cards += `
-    <div class="card" id="recipe-card">
+    <div class="card" id="${response.recipe.uri.split("_")[1]}">
         <div class="card-image recipe-image" id="recipe-image">
             <figure class="image is-4by3">
                 <img src="${response.recipe.image}" alt = "photo of recipe">
