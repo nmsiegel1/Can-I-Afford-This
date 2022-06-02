@@ -111,11 +111,6 @@ function randomHTML(results) {
 
 // this is the click element for the save button that saves a recipe to local storage
 $("body").on("click", ".save-btn", function () {
-    // var myModal = document.getElementById("#myModal");
-    // myModal.classList.remove("hide");
-    function openModal($el) {
-        $el.classList.add('is-active');
-      }
   var recipeEl = $(this).attr("id");
   // if (savedRecipesArray.indexOf(recipeEl) != -1){
   savedRecipesArray.push(recipeEl);
