@@ -111,33 +111,8 @@ function randomHTML(results) {
 
 $("body").on("click", ".save-btn", function(){
 var recipeEl = $(this).attr("id");
+  // if (savedRecipesArray.indexOf(recipeId) != -1){
 savedRecipesArray.push(recipeEl);
 localStorage.setItem("savedRecipes", JSON.stringify(savedRecipesArray));
 });
 
-
-
-function saveRecipe() {
-    var recipeId = this.id;
-    console.log("recipe id", recipeId);
-    // if (savedRecipesArray.indexOf(recipeId) != -1){
-        var recipePull = 
-    console.log("pushed array", savedRecipesArray)
-    localStorage.setItem("savedRecipes", JSON.stringify(recipePul));
-}
-// }
-// var key = JSON.stringify($(this).parent().siblings(".card").children());
-// var recipeId = $(this).attr("id");
-// localStorage.setItem(key, recipeId);;
-
-// document.addEventListener("click", event => {
-    //     console.log("im clicked")
-    //     if (event.target.id == "save-btn") {
-        //         console.log("save click")
-//         var key = $(this).parent().siblings(".card").children();
-//         console.log("key", key)
-//         var recipeId = $(this).attr("id");
-//         console.log("id", recipeId)
-
-//     }
-// })
