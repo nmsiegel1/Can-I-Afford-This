@@ -22,7 +22,7 @@ async function searchRecipes(currentKeyword) {
     recipeApiKey +
     "&q=" +
     currentKeyword +
-    "&to=4";
+    "&to=16";
   console.log(recipeUrl);
 
   var response = await fetch(recipeUrl);
