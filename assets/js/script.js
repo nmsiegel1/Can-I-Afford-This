@@ -24,7 +24,7 @@ async function searchRecipes(currentKeyword) {
     recipeApiKey +
     "&q=" +
     currentKeyword +
-    "&to=4";
+    "&to=12";
 
   var response = await fetch(recipeUrl);
   var data = await response.json();
@@ -38,8 +38,9 @@ function recipeHTML(results) {
     var recipeId = response.recipe.uri.split("_")[1];
 
     cards += `
-    <div class="card" id="recipe-card">
-
+    <div class="card column is-multiline" id="${
+      response.recipe.uri.split("_")[1]
+    }">
         <div class="card-image recipe-image" id="recipe-image">
             <figure class="image is-4by3">
                 <img src="${response.recipe.image}" alt = "photo of recipe">
@@ -60,11 +61,10 @@ function recipeHTML(results) {
             <footer class="card-footer">
                 <a href=" ${
                   response.recipe.url
-                } " class="card-footer-item view-recipe" target= "_blank">View Recipe</a>
-                <a href="#" class="card-footer-item save-btn" id="${
-                  response.recipe.uri.split("_")[1]
-                }">Save</a>
+                } " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
+                <a href="#" class="card-footer-item save-btn" id="save-btn">Save</a>
             </footer>
+            <div class="blank-space"></div>
         </div>`;
     containerEl.innerHTML = cards;
   });

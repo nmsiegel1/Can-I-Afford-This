@@ -15,12 +15,10 @@
     <header>
         <nav>
             <a href="./favorites.html" class="favorites">
-                <span class="icon">
-                    <i class="fa-solid fa-bowl-food"></i>
+                <span class="icon is-size-1 is-inline pr-6">
+                    <i class="fa-solid fa-utensils"></i>
                 </span>
-                <span class="is-size-4 ">
-                    Favorites
-                </span>
+                <span class="is-size-1 is-uppercase"> Favorites</span>
             </a>
         </nav>
     </header>
@@ -34,17 +32,16 @@
         </h2>
         <form class="nosubmit" id="search-form" type="search">
             <input name="search" id="search-name" type="text" autofocus="true" class="form-input" placeholder="Find a recipe..."></inpput>
-            <button type="submit" class="button" id="search-btn">Search</button>
+            <button type="submit" class="search-btn" id="search-btn">Search</button>
             <button type="" class=" random-btn" id="random-btn">
-                Feeling Lucky?
+                <i class="fa-solid fa-dice"></i>
             </button>
         </form>
     </div>
-    <div id="save-message" style="visibility:hidden" class="has-text-centered add-fav hide">Recipe added to favorites</div>
     </div>
 
    
-    <div class="columns is-vcentered">
+    <div class="columns is-centered is-multiline is-gapless">
         <div class="column">
             <!-- <div class="card" id="recipe-card">
                 <div class="card-image recipe-image" id="recipe-image">
