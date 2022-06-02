@@ -38,9 +38,8 @@ function recipeHTML(results) {
     var recipeId = response.recipe.uri.split("_")[1];
 
     cards += `
-    <div class="card column is-multiline" id="${
-      response.recipe.uri.split("_")[1]
-    }">
+    <div class=block>
+    <div class="card block" id="recipe-card">
         <div class="card-image recipe-image" id="recipe-image">
             <figure class="image is-4by3">
                 <img src="${response.recipe.image}" alt = "photo of recipe">
@@ -62,9 +61,9 @@ function recipeHTML(results) {
                 <a href=" ${
                   response.recipe.url
                 } " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
-                <a href="#" class="card-footer-item save-btn" id="save-btn">Save</a>
+                <a href="javascript:void()" class="card-footer-item save-btn" id="${response.recipe.uri.split("_")[1]}">Save</a>
             </footer>
-            <div class="blank-space"></div>
+        </div>
         </div>`;
     containerEl.innerHTML = cards;
   });
@@ -89,7 +88,8 @@ function randomHTML(results) {
   var cards = "";
   results.map((response) => {
     cards += `
-        <div class="card" id="recipe-card">
+        <div class="block is-four-fifths random">
+        <div class="card block" id="recipe-card">
         <div class="card-image recipe-image" id="recipe-image">
         <figure class="image is-4by3">
         <img src="${response.strMealThumb}" alt = "photo of recipe">
@@ -97,13 +97,14 @@ function randomHTML(results) {
         </div>
         <div class="card-content" id="recipe-content">
         <div class="media-content">
-        <p class="title is-4 recipe-title" id="recipe-title">
-        ${response.strMeal} 
+        <p class="title is-four-fifths recipe-title" id="recipe-title">
+        ${response.strMeal}
         </p>
         </div>
         <footer class="card-footer">
         <a href=" ${response.strSource} " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
         </footer>
+        </div>
         </div>`;
     containerEl.innerHTML = cards;
   });

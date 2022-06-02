@@ -46,9 +46,10 @@ function recipeHTML(results) {
   var cards = "";
   results.map((response) => {
     cards += `
-    <div class="card" id="${response.recipe.uri.split("_")[1]}">
+    <div class="block">
+    <div class="column is-full card top-margin" id="${response.recipe.uri.split("_")[1]}">
         <div class="card-image recipe-image" id="recipe-image">
-            <figure class="image is-4by3">
+            <figure class="image is-half">
                 <img src="${response.recipe.image}" alt = "photo of recipe">
             </figure>
         </div>
@@ -66,6 +67,7 @@ function recipeHTML(results) {
             <footer class="card-footer">
                 <a href=" ${response.recipe.url} " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
             </footer>
+            </div>
         </div>`;
     containerEl.innerHTML = cards;
   });
