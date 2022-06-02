@@ -1,4 +1,4 @@
-//for recipe api
+//global variables
 var recipeAppID = "650e07f6";
 var recipeApiKey = "61be0ff18cfbf722d2b2b7a832127896";
 
@@ -8,12 +8,14 @@ var randomButtonEl = document.getElementById("random-btn");
 var containerEl = document.querySelector(".columns");
 var savedRecipesArray = [];
 
+// eventlistener that take the input value and sends it to the searchRecipe()
 searchButtonEl.addEventListener("click", function (event) {
   event.preventDefault();
   var keyword = inputEl.value;
   searchRecipes(keyword);
 });
 
+// this function takes the keyword and runs it through the api
 async function searchRecipes(currentKeyword) {
   var recipeUrl =
     "https://api.edamam.com/search?app_id=" +
@@ -23,20 +25,17 @@ async function searchRecipes(currentKeyword) {
     "&q=" +
     currentKeyword +
     "&to=4";
-  console.log(recipeUrl);
 
   var response = await fetch(recipeUrl);
   var data = await response.json();
   recipeHTML(data.hits);
-  console.log(data);
 }
 
+// this function dynamically creates the cards on the screen from the data fetched from the api
 function recipeHTML(results) {
-  console.log(results);
   var cards = "";
   results.map((response) => {
     var recipeId = response.recipe.uri.split("_")[1];
-    console.log("new id", recipeId);
 
     cards += `
     <div class="card" id="recipe-card">
@@ -62,33 +61,34 @@ function recipeHTML(results) {
                 <a href=" ${
                   response.recipe.url
                 } " class="card-footer-item view-recipe" target= "_blank">View Recipe</a>
-                <a href="#" class="card-footer-item save-btn" id="${response.recipe.uri.split("_")[1]}">Save</a>
+                <a href="#" class="card-footer-item save-btn" id="${
+                  response.recipe.uri.split("_")[1]
+                }">Save</a>
             </footer>
         </div>`;
     containerEl.innerHTML = cards;
   });
 }
 
-
+// This is the eventlistener for the feeling lucky button/random recipe button
 randomButtonEl.addEventListener("click", function (event) {
-    event.preventDefault();
-    console.log("clicked");
-    getRandomRecipe();
+  event.preventDefault();
+  getRandomRecipe();
 });
 
+// this funciton calls the second api to fetch a random recipe
 async function getRandomRecipe() {
-    var randomUrl = "https://themealdb.com/api/json/v1/1/random.php";
-    console.log(randomUrl);
-    var response = await fetch(randomUrl);
-    var data = await response.json();
-    randomHTML(data.meals);
+  var randomUrl = "https://themealdb.com/api/json/v1/1/random.php";
+  var response = await fetch(randomUrl);
+  var data = await response.json();
+  randomHTML(data.meals);
 }
 
+// this function displays the random recipe on the screen in a dynamically created card
 function randomHTML(results) {
-    console.log(results);
-    var cards = "";
-    results.map((response) => {
-        cards += `
+  var cards = "";
+  results.map((response) => {
+    cards += `
         <div class="card" id="recipe-card">
         <div class="card-image recipe-image" id="recipe-image">
         <figure class="image is-4by3">
@@ -105,14 +105,19 @@ function randomHTML(results) {
         <a href=" ${response.strSource} " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
         </footer>
         </div>`;
-        containerEl.innerHTML = cards;
-    });
+    containerEl.innerHTML = cards;
+  });
 }
 
-$("body").on("click", ".save-btn", function(){
-var recipeEl = $(this).attr("id");
-  // if (savedRecipesArray.indexOf(recipeId) != -1){
-savedRecipesArray.push(recipeEl);
-localStorage.setItem("savedRecipes", JSON.stringify(savedRecipesArray));
+// this is the click element for the save button that saves a recipe to local storage
+$("body").on("click", ".save-btn", function () {
+    // var myModal = document.getElementById("#myModal");
+    // myModal.classList.remove("hide");
+    function openModal($el) {
+        $el.classList.add('is-active');
+      }
+  var recipeEl = $(this).attr("id");
+  // if (savedRecipesArray.indexOf(recipeEl) != -1){
+  savedRecipesArray.push(recipeEl);
+  localStorage.setItem("savedRecipes", JSON.stringify(savedRecipesArray));
 });
-

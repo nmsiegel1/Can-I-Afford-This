@@ -5,49 +5,47 @@ var recipeApiKey = "61be0ff18cfbf722d2b2b7a832127896";
 var nutritionAppID = "9c414ff1";
 var nutritionApiKey = "8237150803039e132ee19b2cc6302444";
 
+// other global variables
 var inputEl = document.getElementById("search-name");
 var searchButtonEl = document.getElementById("search-btn");
 var containerEl = document.querySelector(".columns");
 var savedRecipesArray = [];
 
-
+// this function gets the data from localstorage and sends it to the searchRecipe()
 function loadRecipes() {
-    var favoriteRecipes = JSON.parse(localStorage.getItem("savedRecipes"))|| [];
-    console.log("favorite recipe", favoriteRecipes);
-    var testRecipeId = "84d3dcca84d9d26535474ea24b15e9c3";
-     for (var i=0; i < favoriteRecipes.length; i++) {
-         var recipeList = favoriteRecipes[i];
-        searchRecipes(recipeList);
-        }
-    }
+  var favoriteRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
+  console.log("favorite recipe", favoriteRecipes);
+  var testRecipeId = "84d3dcca84d9d26535474ea24b15e9c3";
+  for (var i = 0; i < favoriteRecipes.length; i++) {
+    var recipeList = favoriteRecipes[i];
+    searchRecipes(recipeList);
+  }
+}
 
+// This function sends the saved data through the api
+async function searchRecipes(recipeList) {
+  var recipeUrl =
+    "https://api.edamam.com/search?app_id=" +
+    recipeAppID +
+    "&app_key=" +
+    recipeApiKey +
+    "&q=" +
+    recipeList;
+  //   currentKeyword +
+  //   "&to=4";
+  console.log("recipe url", recipeUrl);
+  var response = await fetch(recipeUrl);
+  var data = await response.json();
+  recipeHTML(data.hits);
+  console.log("data", data);
+  var results = data.hits;
+}
 
-
-    async function searchRecipes(recipeList) {
-      
-    var recipeUrl =
-      "https://api.edamam.com/search?app_id=" +
-      recipeAppID +
-      "&app_key=" +
-      recipeApiKey +
-      "&q=" +
-     recipeList;
-    //   currentKeyword +
-    //   "&to=4";
-    console.log("recipe url", recipeUrl);
-    var response = await fetch (recipeUrl);
-    var data = await response.json();
-    recipeHTML(data.hits)
-    console.log ("data", data);
-    var results = data.hits;
-};
-
-
-function recipeHTML (results) {
-    var cards = "";
-    results.map(response => {
-
-    cards +=  `
+// this function renders the cards dynamically on the screen with the data fetched from the api
+function recipeHTML(results) {
+  var cards = "";
+  results.map((response) => {
+    cards += `
     <div class="card" id="recipe-card">
         <div class="card-image recipe-image" id="recipe-image">
             <figure class="image is-4by3">
@@ -70,8 +68,8 @@ function recipeHTML (results) {
             </footer>
         </div>`;
     containerEl.innerHTML = cards;
-    })
+  });
 }
 
-
+// calls the loadRecipes() at page load
 loadRecipes();
