@@ -11,38 +11,36 @@ var containerEl = document.querySelector(".columns");
 var savedRecipesArray = [];
 
 function loadRecipes() {
-    var testRecipeId = "84d3dcca84d9d26535474ea24b15e9c3";
-    // var savedRecipes = JSON.parse(localStorage.getItem("savedRecipesArray")) || [];
-    // for (var i=0; i < savedRecipesArray.lenght; i++) {
-        searchRecipes(testRecipeId);
-        // console.log("pull from storage", savedRecipes[i])
-    }
+  var testRecipeId = "84d3dcca84d9d26535474ea24b15e9c3";
+  // var savedRecipes = JSON.parse(localStorage.getItem("savedRecipesArray")) || [];
+  // for (var i=0; i < savedRecipesArray.lenght; i++) {
+  searchRecipes(testRecipeId);
+  // console.log("pull from storage", savedRecipes[i])
+}
 // }
 
-
 async function searchRecipes(testRecipeId) {
-    var recipeUrl =
-      "https://api.edamam.com/search?app_id=" +
-      recipeAppID +
-      "&app_key=" +
-      recipeApiKey +
-      "&q=" +
-      testRecipeId;
-    //   currentKeyword +
-    //   "&to=4";
-    console.log(recipeUrl);
-  
-    var response = await fetch (recipeUrl);
-    var data = await response.json();
-    recipeHTML(data.hits)
-    console.log (data);
-  }
-function recipeHTML (results) {
-    // console.log(savedRecipes)
-    var cards = "";
-    results.map(response => {
+  var recipeUrl =
+    "https://api.edamam.com/search?app_id=" +
+    recipeAppID +
+    "&app_key=" +
+    recipeApiKey +
+    "&q=" +
+    testRecipeId;
+  //   currentKeyword +
+  //   "&to=4";
+  console.log(recipeUrl);
 
-    cards +=  `
+  var response = await fetch(recipeUrl);
+  var data = await response.json();
+  recipeHTML(data.hits);
+  console.log(data);
+}
+function recipeHTML(results) {
+  // console.log(savedRecipes)
+  var cards = "";
+  results.map((response) => {
+    cards += `
     <div class="card" id="recipe-card">
         <div class="card-image recipe-image" id="recipe-image">
             <figure class="image is-4by3">
@@ -65,7 +63,7 @@ function recipeHTML (results) {
             </footer>
         </div>`;
     containerEl.innerHTML = cards;
-    })
+  });
 }
 
 loadRecipes();
