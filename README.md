@@ -25,6 +25,9 @@ https://docs.google.com/presentation/d/1LlAg9RS9QMj5XDiYNRdjhiUHAkj4UPuBXxqmz_4u
 
 ## Contribution
 Nina Siegel - JS, CSS, HTML, project manager
+
 Chris Hodges - JS, APIS
+
 Ashley Darr - CSS, powerpoint
+
 Keon Mebane - CSS, README
