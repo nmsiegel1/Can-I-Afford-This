@@ -5,7 +5,7 @@ var recipeApiKey = "61be0ff18cfbf722d2b2b7a832127896";
 var inputEl = document.getElementById("search-name");
 var searchButtonEl = document.getElementById("search-btn");
 var randomButtonEl = document.getElementById("random-btn");
-var containerEl = document.querySelector(".columns");
+var containerEl = document.querySelector("#recipe-list");
 var savedRecipesArray = [];
 
 // eventlistener that take the input value and sends it to the searchRecipe()
@@ -33,13 +33,12 @@ async function searchRecipes(currentKeyword) {
 
 // this function dynamically creates the cards on the screen from the data fetched from the api
 function recipeHTML(results) {
-  var cards = "";
+    var cards = "";
   results.map((response) => {
     var recipeId = response.recipe.uri.split("_")[1];
-
     cards += `
-    <div class=block>
-    <div class="card block" id="recipe-card">
+    <div class="block"></div>
+    <div class="card column" id="recipe-card">
         <div class="card-image recipe-image" id="recipe-image">
             <figure class="image is-4by3">
                 <img src="${response.recipe.image}" alt = "photo of recipe">
@@ -65,7 +64,7 @@ function recipeHTML(results) {
             </footer>
         </div>
         </div>`;
-    containerEl.innerHTML = cards;
+        containerEl.innerHTML = cards;
   });
 }
 
@@ -88,8 +87,8 @@ function randomHTML(results) {
   var cards = "";
   results.map((response) => {
     cards += `
-        <div class="block is-four-fifths random">
-        <div class="card block" id="recipe-card">
+        <div class="block is-full random">
+        <div class="card column" id="recipe-card">
         <div class="card-image recipe-image" id="recipe-image">
         <figure class="image is-4by3">
         <img src="${response.strMealThumb}" alt = "photo of recipe">

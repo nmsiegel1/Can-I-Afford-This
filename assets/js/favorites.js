@@ -1,21 +1,13 @@
 //for recipe api
 var recipeAppID = "650e07f6";
 var recipeApiKey = "61be0ff18cfbf722d2b2b7a832127896";
-// for nutrition api
-var nutritionAppID = "9c414ff1";
-var nutritionApiKey = "8237150803039e132ee19b2cc6302444";
 
 // other global variables
-var inputEl = document.getElementById("search-name");
-var searchButtonEl = document.getElementById("search-btn");
-var containerEl = document.querySelector(".columns");
 var savedRecipesArray = [];
 
 // this function gets the data from localstorage and sends it to the searchRecipe()
 function loadRecipes() {
   var favoriteRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
-  console.log("favorite recipe", favoriteRecipes);
-  var testRecipeId = "84d3dcca84d9d26535474ea24b15e9c3";
   for (var i = 0; i < favoriteRecipes.length; i++) {
     var recipeList = favoriteRecipes[i];
     searchRecipes(recipeList);
@@ -31,23 +23,19 @@ async function searchRecipes(recipeList) {
     recipeApiKey +
     "&q=" +
     recipeList;
-  //   currentKeyword +
-  //   "&to=4";
-  console.log("recipe url", recipeUrl);
+
   var response = await fetch(recipeUrl);
   var data = await response.json();
   recipeHTML(data.hits);
-  console.log("data", data);
   var results = data.hits;
 }
 
 // this function renders the cards dynamically on the screen with the data fetched from the api
 function recipeHTML(results) {
-  var cards = "";
+
   results.map((response) => {
-    cards += `
-    <div class="block">
-    <div class="column is-full card top-margin" id="${response.recipe.uri.split("_")[1]}">
+    var card = `<div class="block"></div>
+    <div class="card column margin-top" id="${response.recipe.uri.split("_")[1]}">
         <div class="card-image recipe-image" id="recipe-image">
             <figure class="image is-half">
                 <img src="${response.recipe.image}" alt = "photo of recipe">
@@ -69,8 +57,8 @@ function recipeHTML(results) {
             </footer>
             </div>
         </div>`;
-    containerEl.innerHTML = cards;
-  });
+    $("#favorite-recipes").append(card);
+});
 }
 
 // calls the loadRecipes() at page load
