@@ -34,7 +34,7 @@ async function searchRecipes(currentKeyword) {
 
 // this function dynamically creates the cards on the screen from the data fetched from the api
 function recipeHTML(results) {
-    var cards = "";
+  var cards = "";
   results.map((response) => {
     var recipeId = response.recipe.uri.split("_")[1];
     cards += `
@@ -61,11 +61,13 @@ function recipeHTML(results) {
                 <a href=" ${
                   response.recipe.url
                 } " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
-                <a href="javascript:void()" class="card-footer-item save-btn" id="${response.recipe.uri.split("_")[1]}">Save</a>
+                <a href="javascript:void()" class="card-footer-item save-btn" id="${
+                  response.recipe.uri.split("_")[1]
+                }">Save</a>
             </footer>
         </div>
         </div>`;
-        containerEl.innerHTML = cards;
+    containerEl.innerHTML = cards;
   });
 }
 
@@ -112,20 +114,18 @@ function randomHTML(results) {
 
 // this is the click element for the save button that saves a recipe to local storage
 $("body").on("click", ".save-btn", function () {
-    debugger;
   var recipeEl = $(this).attr("id");
-  if (!savedRecipesArray.includes(recipeEl)){
-  savedRecipesArray.push(recipeEl);
-  localStorage.setItem("savedRecipes", JSON.stringify(savedRecipesArray));
+  if (!savedRecipesArray.includes(recipeEl)) {
+    savedRecipesArray.push(recipeEl);
+    localStorage.setItem("savedRecipes", JSON.stringify(savedRecipesArray));
   }
   showMessage();
 });
 
-function showMessage(){
-    var messageEl = document.querySelector("#save-message");
-    messageEl.style.visibility = "visible";
-    setTimeout(() => {
-        messageEl.style.visibility = "hidden";
-    }, 1000);
+function showMessage() {
+  var messageEl = document.querySelector("#save-message");
+  messageEl.style.visibility = "visible";
+  setTimeout(() => {
+    messageEl.style.visibility = "hidden";
+  }, 1000);
 }
-

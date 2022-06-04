@@ -32,10 +32,11 @@ async function searchRecipes(recipeList) {
 
 // this function renders the cards dynamically on the screen with the data fetched from the api
 function recipeHTML(results) {
-
   results.map((response) => {
     var card = `<div class="block"></div>
-    <div class="card column margin-top" id="${response.recipe.uri.split("_")[1]}">
+    <div class="card column margin-top" id="${
+      response.recipe.uri.split("_")[1]
+    }">
         <div class="card-image recipe-image" id="recipe-image">
             <figure class="image is-half">
                 <img src="${response.recipe.image}" alt = "photo of recipe">
@@ -43,7 +44,9 @@ function recipeHTML(results) {
         </div>
         <div class="card-content" id="recipe-content">
             <div class="media-content">
-                    <p class="title is-4 recipe-title" id="recipe-title">${response.recipe.label}</p>
+                    <p class="title is-4 recipe-title" id="recipe-title">${
+                      response.recipe.label
+                    }</p>
             </div>
             <div class="recipe-description" id="recipe-description">
 
@@ -53,12 +56,14 @@ function recipeHTML(results) {
             </div>
             </div>
             <footer class="card-footer">
-                <a href=" ${response.recipe.url} " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
+                <a href=" ${
+                  response.recipe.url
+                } " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
             </footer>
             </div>
         </div>`;
     $("#favorite-recipes").append(card);
-});
+  });
 }
 
 // calls the loadRecipes() at page load
