@@ -5,8 +5,9 @@ var recipeApiKey = "61be0ff18cfbf722d2b2b7a832127896";
 var inputEl = document.getElementById("search-name");
 var searchButtonEl = document.getElementById("search-btn");
 var randomButtonEl = document.getElementById("random-btn");
-var containerEl = document.querySelector(".columns");
-var savedRecipesArray = [];
+var containerEl = document.querySelector("#recipe-list");
+var savedRecipesArray = JSON.parse(localStorage.getItem("savedRecipes")) || [];
+// var savedRecipesArray = [];
 
 // eventlistener that take the input value and sends it to the searchRecipe()
 searchButtonEl.addEventListener("click", function (event) {
@@ -36,10 +37,9 @@ function recipeHTML(results) {
   var cards = "";
   results.map((response) => {
     var recipeId = response.recipe.uri.split("_")[1];
-
     cards += `
-    <div class=block>
-    <div class="card block" id="recipe-card">
+    <div class="block"></div>
+    <div class="card column" id="recipe-card">
         <div class="card-image recipe-image" id="recipe-image">
             <figure class="image is-4by3">
                 <img src="${response.recipe.image}" alt = "photo of recipe">
@@ -61,7 +61,9 @@ function recipeHTML(results) {
                 <a href=" ${
                   response.recipe.url
                 } " class="card-footer-item view-recipe" id="view-recipe" target= "_blank">View Recipe</a>
-                <a href="javascript:void()" class="card-footer-item save-btn" id="${response.recipe.uri.split("_")[1]}">Save</a>
+                <a href="javascript:void()" class="card-footer-item save-btn" id="${
+                  response.recipe.uri.split("_")[1]
+                }">Save</a>
             </footer>
         </div>
         </div>`;
@@ -88,8 +90,8 @@ function randomHTML(results) {
   var cards = "";
   results.map((response) => {
     cards += `
-        <div class="block is-four-fifths random">
-        <div class="card block" id="recipe-card">
+        <div class="block is-full random">
+        <div class="card column" id="recipe-card">
         <div class="card-image recipe-image" id="recipe-image">
         <figure class="image is-4by3">
         <img src="${response.strMealThumb}" alt = "photo of recipe">
@@ -113,18 +115,17 @@ function randomHTML(results) {
 // this is the click element for the save button that saves a recipe to local storage
 $("body").on("click", ".save-btn", function () {
   var recipeEl = $(this).attr("id");
-  if (!savedRecipesArray.includes(recipeEl)){
-  savedRecipesArray.push(recipeEl);
-  localStorage.setItem("savedRecipes", JSON.stringify(savedRecipesArray));
+  if (!savedRecipesArray.includes(recipeEl)) {
+    savedRecipesArray.push(recipeEl);
+    localStorage.setItem("savedRecipes", JSON.stringify(savedRecipesArray));
   }
   showMessage();
 });
 
-function showMessage(){
-    var messageEl = document.querySelector("#save-message");
-    messageEl.style.visibility = "visible";
-    setTimeout(() => {
-        messageEl.style.visibility = "hidden";
-    }, 1000);
+function showMessage() {
+  var messageEl = document.querySelector("#save-message");
+  messageEl.style.visibility = "visible";
+  setTimeout(() => {
+    messageEl.style.visibility = "hidden";
+  }, 1000);
 }
-

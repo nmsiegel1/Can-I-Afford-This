@@ -179,6 +179,10 @@ input.nosubmit {
 
 
 /* styling for cards */
+.block:not(:last-child) {
+  margin-bottom: 2.5rem;
+}
+
 .title.is-4 {
     font-size: 2.5rem;
 }
@@ -204,4 +208,8 @@ input.nosubmit {
 
 .top-margin {
     margin-top: 50px;
+}
+
+.hide {
+  display: none;
 }
