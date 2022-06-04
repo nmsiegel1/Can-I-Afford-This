@@ -6,7 +6,8 @@ var inputEl = document.getElementById("search-name");
 var searchButtonEl = document.getElementById("search-btn");
 var randomButtonEl = document.getElementById("random-btn");
 var containerEl = document.querySelector("#recipe-list");
-var savedRecipesArray = [];
+var savedRecipesArray = JSON.parse(localStorage.getItem("savedRecipes")) || [];
+// var savedRecipesArray = [];
 
 // eventlistener that take the input value and sends it to the searchRecipe()
 searchButtonEl.addEventListener("click", function (event) {
@@ -111,6 +112,7 @@ function randomHTML(results) {
 
 // this is the click element for the save button that saves a recipe to local storage
 $("body").on("click", ".save-btn", function () {
+    debugger;
   var recipeEl = $(this).attr("id");
   if (!savedRecipesArray.includes(recipeEl)){
   savedRecipesArray.push(recipeEl);
